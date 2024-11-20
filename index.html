@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jerin Rex's Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .nav {
+            display: flex;
+        }
+
+        header .nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        header .nav a:hover {
+            color: #00bcd4;
+            border-bottom: 2px solid #00bcd4;
+        }
+
+        header .intro {
+            flex: 1;
+            text-align: center;
+        }
+
+        header .intro h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        header .intro p {
+            font-size: 1.2em;
+            color: #bbb;
+        }
+
+        header img {
+            width: 120px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        section {
+            padding: 60px 20px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .project-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .project-item {
+            width: 45%;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            background-color: #00bcd4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #0097a7;
+        }
+
+        .project-description {
+            display: none;
+            margin-top: 10px;
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .project-description.visible {
+            display: block;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1em;
+        }
+
+        footer a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Additional Styles for Sections */
+        .education, .vocational, .contact {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .education ul, .vocational ul, .contact ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .education li, .vocational li, .contact li {
+            margin-bottom: 10px;
+        }
+
+        #education {
+        padding: 40px 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .education-list {
+        list-style: none;
+        padding: 0;
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #555;
+    }
+
+    .education-list li {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 10px 0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .education-list li:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .degree {
+        font-weight: bold;
+        color: #4CAF50;
+    }
+
+    strong {
+        color: #333;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 768px) {
+        .education-list li {
+            font-size: 1em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+    }
+
+    /* Hover effects and text interaction */
+    .education-list li:hover .degree {
+        color: #fff;
+        background-color: #4CAF50;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header style="position: relative; padding: 20px; background-color: #0c0c0c;">
+        <!-- CV Download -->
+        <div style="position: absolute; top: 30px; left: 20px;">
+            <a href="Jerin Rex.G.pdf" download 
+                style="
+                    display: inline-block; 
+                    text-decoration: none; 
+                    font-size: 16px; 
+                    font-weight: bold; 
+                    color: #ffffff; 
+                    background-color: #007bff; 
+                    padding: 10px 20px; 
+                    border-radius: 8px; 
+                    transition: all 0.3s ease;"
+                onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-2px)';"
+                onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';">
+                Download CV
+            </a>
+        </div>
+    
+        <!-- Navigation -->
+        <div style="text-align: center; margin-top: 80px;">
+            <a href="#about" 
+                style="margin: 0 10px; text-decoration: none; color: #ffffff; font-size: 16px; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;" 
+                onmouseover="this.style.backgroundColor='#ffffff'; this.style.color='#000';" 
+                onmouseout="this.style.backgroundColor='transparent'; this.style.color='#ffffff';">
+                About
+            </a>
+            <a href="#skills" 
+                style="margin: 0 10px; text-decoration: none; color: #ffffff; font-size: 16px; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;" 
+                onmouseover="this.style.backgroundColor='#ffffff'; this.style.color='#000';" 
+                onmouseout="this.style.backgroundColor='transparent'; this.style.color='#ffffff';">
+                Skills
+            </a>
+            <a href="#projects" 
+                style="margin: 0 10px; text-decoration: none; color: #ffffff; font-size: 16px; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;" 
+                onmouseover="this.style.backgroundColor='#ffffff'; this.style.color='#000';" 
+                onmouseout="this.style.backgroundColor='transparent'; this.style.color='#ffffff';">
+                Projects
+            </a>
+            <a href="#education" 
+                style="margin: 0 10px; text-decoration: none; color: #ffffff; font-size: 16px; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;" 
+                onmouseover="this.style.backgroundColor='#ffffff'; this.style.color='#000';" 
+                onmouseout="this.style.backgroundColor='transparent'; this.style.color='#ffffff';">
+                Education
+            </a>
+            <a href="#vocational" 
+                style="margin: 0 10px; text-decoration: none; color: #ffffff; font-size: 16px; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;" 
+                onmouseover="this.style.backgroundColor='#ffffff'; this.style.color='#000';" 
+                onmouseout="this.style.backgroundColor='transparent'; this.style.color='#ffffff';">
+                Vocational
+            </a>
+            <a href="#contact" 
+                style="margin: 0 10px; text-decoration: none; color: #ffffff; font-size: 16px; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;" 
+                onmouseover="this.style.backgroundColor='#ffffff'; this.style.color='#000';" 
+                onmouseout="this.style.backgroundColor='transparent'; this.style.color='#ffffff';">
+                Contact
+            </a>
+        </div>
+        
+    
+        <!-- Intro Section -->
+        <div style="text-align: center; margin-top: 40px;">
+            <h1 style="font-size: 32px; color: #de8304; margin-bottom: 10px;">Hello, I'm Jerin Rex.G</h1>
+            <p style="font-size: 18px; color: #f0ede9;">Passionate software developer eager to drive innovation-.</p>
+        </div>
+    
+        <!-- Profile Image -->
+        <div style="text-align: center; margin-top:20px;">
+            <img src="jery.jpg" alt="Jerin Rex's image" style="width: 150px; height: 170px; border-radius: 50%; border: 3px solid #ddd;">
+        </div>
+    </header>
+    
+
+  <!-- About Section -->
+  <section id="about" style="padding: 50px 20px; background-color: #ffffff; position: relative; text-align: left; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin: 20px 0;">
+    <div class="about-container" style="position: relative; z-index: 2;">
+        <h2 style="font-size: 2.5em; color: #2c3e50; margin-bottom: 20px; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; text-align: left;">
+            About Me
+        </h2>
+       <p style="font-size: 1.1em; line-height: 1.8; color: #34495e; margin-bottom: 15px;">
+    I am a motivated fresher passionate about technology and software development. Skilled in programming, web development, and problem-solving, I aim to contribute to innovative projects while continuously learning and growing as a developer.
+</p>
+
+        <p style="font-size: 1.1em; line-height: 1.8; color: #34495e; margin-bottom: 15px;">
+            <strong style="color: #2c3e50; font-weight: 600;">Date of Birth:</strong> 08/01/2003
+        </p>
+        <p style="font-size: 1.1em; line-height: 1.8; color: #34495e; margin-bottom: 15px;">
+            <strong style="color: #2c3e50; font-weight: 600;">Phone Number:</strong> +91 8925212131
+        </p>
+        <p style="font-size: 1.1em; line-height: 1.8; color: #34495e; margin-bottom: 15px;">
+            <strong style="color: #2c3e50; font-weight: 600;">Email:</strong> <a href="mailto:jerinrx@gmail.com" style="color: #2980b9; text-decoration: none; font-weight: 600;" 
+                onmouseover="this.style.color='#16a085'; this.style.textDecoration='underline';" 
+                onmouseout="this.style.color='#2980b9'; this.style.textDecoration='none';">jerinrx@gmail.com</a>
+        </p>
+    </div>
+</section>
+
+
+    
+
+    <!-- Skills Section -->
+   <!-- Skills Section -->
+   <section id="skills" style="padding: 50px 20px; background-color: #f8f9fa; text-align: center; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin: 20px 0;">
+    <h2 style="font-size: 2.5em; color: #333; margin-bottom: 40px; text-transform: uppercase; font-weight: bold; letter-spacing: 2px;">
+        Skills
+    </h2>
+    <div class="skills-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px;">
+
+        <!-- Core Java -->
+        <div class="skill-box" style="background-color: #fff; padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+            <i class="fab fa-java" style="font-size: 3em; color: #f39c12; margin-bottom: 20px;"></i>
+            <h3 style="color: #333; font-size: 1.5em; margin-bottom: 15px;">Core Java</h3>
+            <ul style="list-style: none; padding: 0; color: #34495e;">
+                <li>OOPs</li>
+                <li>JDBC</li>
+            </ul>
+        </div>
+
+        <!-- Advanced Java -->
+        <div class="skill-box" style="background-color: #fff; padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+            <i class="fa fa-cogs" style="font-size: 3em; color: #2ecc71; margin-bottom: 20px;"></i>
+            <h3 style="color: #333; font-size: 1.5em; margin-bottom: 15px;">Advanced Java</h3>
+            <ul style="list-style: none; padding: 0; color: #34495e;">
+                <li>Servlet</li>
+                <li>JSP</li>
+            </ul>
+        </div>
+
+        <!-- Python -->
+        <div class="skill-box" style="background-color: #fff; padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+            <i class="fab fa-python" style="font-size: 3em; color: #306998; margin-bottom: 20px;"></i>
+            <h3 style="color: #333; font-size: 1.5em; margin-bottom: 15px;">Python</h3>
+            <ul style="list-style: none; padding: 0; color: #34495e;">
+                <li>Basic to Intermediate Programming</li>
+            </ul>
+        </div>
+
+        <!-- Frameworks -->
+        <div class="skill-box" style="background-color: #fff; padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+            <i class="fa fa-cogs" style="font-size: 3em; color: #e74c3c; margin-bottom: 20px;"></i>
+            <h3 style="color: #333; font-size: 1.5em; margin-bottom: 15px;">Frameworks</h3>
+            <ul style="list-style: none; padding: 0; color: #34495e;">
+                <li>Laravel</li>
+                <li>React.js</li>
+                <li>.NET (Basic Knowledge)</li>
+            </ul>
+        </div>
+
+        <!-- Databases -->
+        <div class="skill-box" style="background-color: #fff; padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+            <i class="fa fa-database" style="font-size: 3em; color: #3498db; margin-bottom: 20px;"></i>
+            <h3 style="color: #333; font-size: 1.5em; margin-bottom: 15px;">Databases</h3>
+            <ul style="list-style: none; padding: 0; color: #34495e;">
+                <li>MySQL</li>
+            </ul>
+        </div>
+
+        <!-- Web Technologies -->
+        <div class="skill-box" style="background-color: #fff; padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+            <i class="fab fa-html5" style="font-size: 3em; color: #e67e22; margin-bottom: 20px;"></i>
+            <i class="fab fa-css3-alt" style="font-size: 3em; color: #3498db; margin-right: 10px;"></i>
+            <i class="fab fa-js" style="font-size: 3em; color: #f39c12;"></i>
+            <h3 style="color: #333; font-size: 1.5em; margin-bottom: 15px;">Web Technologies</h3>
+            <ul style="list-style: none; padding: 0; color: #34495e;">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>PHP</li>
+            </ul>
+        </div>
+
+        <!-- Development Tools -->
+        <div class="skill-box" style="background-color: #fff; padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+            <i class="fa fa-laptop-code" style="font-size: 3em; color: #9b59b6; margin-bottom: 20px;"></i>
+            <h3 style="color: #333; font-size: 1.5em; margin-bottom: 15px;">Development Tools</h3>
+            <ul style="list-style: none; padding: 0; color: #34495e;">
+                <li>VS Code</li>
+                <li>NetBeans</li>
+                <li>Android Studio</li>
+            </ul>
+        </div>
+        <div class="skill-box" style="background-color: #fff; padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;">
+            <i class="fa fa-fire" style="font-size: 3em; color: #ff5722; margin-bottom: 20px;"></i>
+            <h3 style="color: #333; font-size: 1.5em; margin-bottom: 15px;">Firebase</h3>
+            <ul style="list-style: none; padding: 0; color: #34495e;">
+                <li>Realtime Database</li>
+                <li>Authentication</li>
+             
+            </ul>
+        </div>
+        
+        
+
+    </div>
+</section>
+
+
+
+
+<!-- Include Font Awesome for Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Educational Qualifications</h2>
+        <ul class="education-list">
+            <li>
+                <span class="degree">PG (MCA):</span> 
+                Sacred Heart College (Autonomous), 2025, <strong>CGPA/Percentage after 2 Semesters: 82%</strong>
+            </li>
+            <li>
+                <span class="degree">UG (BCA):</span> 
+                Don Bosco College, Yelagiri Hills, 2023, <strong>80.05%</strong>
+            </li>
+            <li>
+                <span class="degree">HSE (12th):</span> 
+                New Power Hr Sec School, 2020, <strong>78%</strong>
+            </li>
+            <li>
+                <span class="degree">SSLC (10th):</span> 
+                New Power Hr Sec School, 2018, <strong>88.2%</strong>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Vocational Section -->
+    <section id="vocational">
+        <h2>Vocational Courses</h2>
+        <table style="width: 100%; border-collapse: separate; border-spacing: 0; margin: 20px 0; 
+                      border: 3px solid #4CAF50; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+            <thead style="background-color: #4CAF50; color: white;">
+                <tr>
+                    <th style="padding: 10px; border-bottom: 2px solid white;">Course Name</th>
+                    <th style="padding: 10px; border-bottom: 2px solid white;">Certificate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color: #f9f9f9;">
+                    <td style="padding: 10px;">Mobile Application Development</td>
+                    <td style="padding: 10px; text-align: center;">
+                        <a href="images/mad.jpg" download style="background-color: #4CAF50; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; cursor: pointer;">
+                            Download Certificate
+                        </a>
+                    </td>
+                </tr>
+                <tr style="background-color: #ffffff;">
+                    <td style="padding: 10px;">Technology for Data Science</td>
+                    <td style="padding: 10px; text-align: center;">
+                        <a href="images/data.jpg" download style="background-color: #4CAF50; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; cursor: pointer;">
+                            Download Certificate
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table> 
+    </section>
+    <section id="workshops">
+        <h2>Workshops</h2>
+        <table style="width: 100%; border-collapse: separate; border-spacing: 0; margin: 20px 0; 
+                      border: 3px solid #4CAF50; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+            <thead style="background-color: #4CAF50; color: white;">
+                <tr>
+                    <th style="padding: 10px; border-bottom: 2px solid white;">Workshop Name</th>
+                    <th style="padding: 10px; border-bottom: 2px solid white;">Certificate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color: #f9f9f9;">
+                    <td style="padding: 10px;">React Js</td>
+                    <td style="padding: 10px; text-align: center;">
+                        <a href="images/reactjs.jpg" download style="background-color: #4CAF50; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; cursor: pointer;">
+                            Download Certificate
+                        </a>
+                    </td>
+                </tr>
+                <tr style="background-color: #ffffff;">
+                    <td style="padding: 10px;">Flask(Python Framework)</td>
+                    <td style="padding: 10px; text-align: center;">
+                        <a href="images/flask.jpg" download style="background-color: #4CAF50; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; cursor: pointer;">
+                            Download Certificate
+                        </a>
+                    </td>
+                </tr>
+               
+            </tbody>
+        </table>
+    </section>
+    
+    
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-list">
+            <!-- Project 1 -->
+            <div class="project-item">
+                <h3>Advanced Notepad for Windows using C#</h3>
+                <button class="btn" onclick="toggleDescription('project1')">About Project</button>
+                <div id="project1" class="project-description">
+                    <ul>
+                        <li>Developed a simple notepad application using C#</li>
+                        <li>Supports basic text editing functions such as typing, saving, and opening files</li>
+                        <li>Provides options to create, edit, and save text documents</li>
+                        <li>Implemented features like cut, copy, paste, and undo/redo actions</li>
+                        <li>Designed with a user-friendly interface for efficient usage</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="project-item">
+                <h3>Website for College Gym using HTML, CSS, JavaScript, PHP</h3>
+                <button class="btn" onclick="toggleDescription('project2')">About Project</button>
+                <div id="project2" class="project-description">
+                    <ul>
+                        <li>Created a website for a college gym using HTML, CSS, Bootstrap, JavaScript, and PHP.</li>
+                        <li>Implemented a login system for members with valid gym subscriptions.</li>
+                        <li>Members can view gym schedules and access workout plans.</li>
+                        <li>Provided workout plans for beginners to guide them through basic gym routines.</li>
+                        <li>Used MySQL to manage user data.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="project-item">
+                <h3>FlexFit 360 – Fitness Software using Java in Android Studio</h3>
+                <button class="btn" onclick="toggleDescription('project3')">About Project</button>
+                <div id="project3" class="project-description">
+                    <ul>
+                        <li>Fitness app built using Java in Android Studio to track workouts and calories.</li>
+                        <li>Features include:
+                            <ul>
+                                <li><strong>Calories Calculator:</strong> Calculates daily caloric needs based on goals, age, weight, and activity level.</li>
+                                <li><strong>Workout Plan:</strong> Personalized workout plans with exercises, sets, reps, and weight based on fitness goals.</li>
+                                <li><strong>Diet:</strong> Meal planning with healthy recipes and portion control to support fitness goals.</li>
+                                <li><strong>Pedometer:</strong> Tracks daily step count for physical activity monitoring.</li>
+                                <li><strong>Health Influencer:</strong> Connects users with certified fitness professionals for guidance and motivation.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Contact Section -->
+    <section id="contact" style="padding: 20px; background-color: #f8f9fa; text-align: center; border-radius: 8px; margin: 20px auto; max-width: 600px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h2 style="font-size: 24px; color: #333; margin-bottom: 20px;">Contact Information</h2>
+        <ul style="list-style-type: none; padding: 0; margin: 0; line-height: 1.8;">
+            <li style="font-size: 18px; color: #555;"><strong style="color: #000;">Phone:</strong> +91 8925212131</li>
+            <li style="font-size: 18px; color: #555;"><strong style="color: #000;">Email:</strong> <a href="mailto:jerinrx@gmail.com" style="color: #007bff; text-decoration: none;">jerinrx@gmail.com</a></li>
+            <li style="font-size: 18px; color: #555;"><strong style="color: #000;">Address:</strong> Kallakurichi (dt), Pin: 606208</li>
+        </ul>
+    </section>
+    
+
+    <!-- Footer -->
+    <footer>
+        <p>Connect with me on social media:</p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/jerin-rex-b02535249/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Jerinrex" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+    
+    <script>
+        // Toggle description visibility
+        function toggleDescription(projectId) {
+            var description = document.getElementById(projectId);
+            description.classList.toggle('visible');
+        }
+    </script>
+
+</body>
+
+</html>
